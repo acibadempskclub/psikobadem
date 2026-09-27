@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       number: '6.',
       badgeText: '6. SAYI',
       title: '6. Sayı',
-      theme: 'Psikobadem 6. Sayı (Güncel Sayı)',
+      theme: 'Değişen Dünyada Psikoloji (Mayıs 2026)',
       fullTitle: 'Psikobadem Dergisi — Sayı 6',
       type: 'iframe',
       url: 'https://heyzine.com/flip-book/8ed8e88479.html#page/1',
@@ -76,15 +76,15 @@ document.addEventListener('DOMContentLoaded', () => {
       cover: 'assets/covers/cover_6.jpg'
     },
     7: {
-      number: 'SON SAYI',
-      badgeText: 'SON SAYI',
-      title: 'Son Sayı',
-      theme: 'Psikobadem 6 (Değişen Dünyada Psikoloji)',
-      fullTitle: 'Psikobadem Dergisi — Son Sayı (Sayı 6)',
+      number: 'ÖZEL',
+      badgeText: 'ÖZEL SAYI',
+      title: 'Özel Sayı',
+      theme: 'Psikobadem Özel Edisyonu',
+      fullTitle: 'Psikobadem Dergisi — Özel Sayı',
       type: 'iframe',
-      url: 'https://heyzine.com/flip-book/8ed8e88479.html#page/1',
-      originalUrl: 'https://heyzine.com/flip-book/8ed8e88479.html#page/1',
-      cover: 'assets/covers/cover_6.jpg'
+      url: 'https://heyzine.com/flip-book/551d7bd7ed.html',
+      originalUrl: 'https://heyzine.com/flip-book/551d7bd7ed.html',
+      cover: 'assets/covers/cover_7.jpg'
     }
   };
 
@@ -171,55 +171,96 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {}
   }
 
-  // Cozy Ambient Sound (Soft Rain & Fireplace crackle simulation)
+  // Serene, Warm & Calming Ambient Music Soundscape (Meditative Warm Pad)
+  let ambientNodes = [];
+
+  function stopAmbientSound() {
+    if (ambientNodes.length > 0) {
+      ambientNodes.forEach(node => {
+        try {
+          if (node.gain) {
+            node.gain.setTargetAtTime(0, audioCtx.currentTime, 0.35);
+          }
+          setTimeout(() => {
+            try { node.stop(); } catch (e) {}
+            try { node.disconnect(); } catch (e) {}
+          }, 700);
+        } catch (e) {}
+      });
+      ambientNodes = [];
+    }
+  }
+
+  function startAmbientSound() {
+    initAudioContext();
+    stopAmbientSound();
+
+    // Master Output with gentle fade-in and warm low-pass filter
+    const masterGain = audioCtx.createGain();
+    masterGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+    masterGain.gain.linearRampToValueAtTime(0.075, audioCtx.currentTime + 2.2); // Peaceful, unobtrusive soft volume
+
+    const masterFilter = audioCtx.createBiquadFilter();
+    masterFilter.type = 'lowpass';
+    masterFilter.frequency.setValueAtTime(320, audioCtx.currentTime); // Warm mellow cutoff, zero harshness
+    masterFilter.Q.setValueAtTime(1.1, audioCtx.currentTime);
+
+    // Ultra-slow breathing LFO for subtle warmth movement (14-second cycle)
+    const filterLfo = audioCtx.createOscillator();
+    const filterLfoGain = audioCtx.createGain();
+    filterLfo.frequency.setValueAtTime(0.07, audioCtx.currentTime);
+    filterLfoGain.gain.setValueAtTime(75, audioCtx.currentTime);
+    filterLfo.connect(masterFilter.frequency);
+    filterLfo.start();
+
+    masterFilter.connect(masterGain);
+    masterGain.connect(audioCtx.destination);
+
+    // Meditative, peaceful ambient chord voicing: C3, G3, B3, E4, G4 (Warm Cmaj9 / Am7 blend)
+    const chordFrequencies = [130.81, 196.00, 246.94, 329.63, 392.00];
+
+    chordFrequencies.forEach((freq, idx) => {
+      const osc = audioCtx.createOscillator();
+      // Alternating pure sine and warm triangle waveforms for soft acoustic warmth
+      osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      // Subtle natural detuning for rich, tranquil spatial presence
+      osc.detune.setValueAtTime((idx - 2) * 3.5, audioCtx.currentTime);
+
+      const voiceGain = audioCtx.createGain();
+      const baseVol = idx === 0 ? 0.38 : (idx === 1 ? 0.28 : 0.18);
+      voiceGain.gain.setValueAtTime(baseVol, audioCtx.currentTime);
+
+      // Gentle tremolo modulation for organic breathing movement
+      const tremolo = audioCtx.createOscillator();
+      const tremoloGain = audioCtx.createGain();
+      tremolo.frequency.setValueAtTime(0.09 + idx * 0.025, audioCtx.currentTime);
+      tremoloGain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+      tremolo.connect(voiceGain.gain);
+      tremolo.start();
+
+      osc.connect(voiceGain);
+      voiceGain.connect(masterFilter);
+      osc.start();
+
+      ambientNodes.push(osc, tremolo, voiceGain);
+    });
+
+    ambientNodes.push(masterGain, masterFilter, filterLfo, filterLfoGain);
+  }
+
   function toggleAmbientSound() {
     initAudioContext();
     const btn = document.getElementById('btn-ambient');
 
     if (isAmbientPlaying) {
-      if (ambientSource) {
-        ambientSource.stop();
-        ambientSource.disconnect();
-        ambientSource = null;
-      }
+      stopAmbientSound();
       isAmbientPlaying = false;
       btn.classList.remove('playing');
       btn.querySelector('.ambient-status').textContent = 'Ambiyans: Kapalı';
     } else {
-      // Create cozy pink noise / rain simulation
-      const bufferSize = audioCtx.sampleRate * 4;
-      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-      const data = buffer.getChannelData(0);
-      let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
-
-      for (let i = 0; i < bufferSize; i++) {
-        const white = Math.random() * 2 - 1;
-        b0 = 0.99886 * b0 + white * 0.0555179;
-        b1 = 0.99332 * b1 + white * 0.0750759;
-        b2 = 0.96900 * b2 + white * 0.1538520;
-        b3 = 0.86650 * b3 + white * 0.3104856;
-        b4 = 0.55000 * b4 + white * 0.5329522;
-        b5 = -0.7616 * b5 - white * 0.0168980;
-        data[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.04;
-        b6 = white * 0.115926;
-      }
-
-      ambientSource = audioCtx.createBufferSource();
-      ambientSource.buffer = buffer;
-      ambientSource.loop = true;
-
-      const filter = audioCtx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.value = 650;
-
-      const gain = audioCtx.createGain();
-      gain.gain.value = 0.18;
-
-      ambientSource.connect(filter);
-      filter.connect(gain);
-      gain.connect(audioCtx.destination);
-      ambientSource.start();
-
+      startAmbientSound();
       isAmbientPlaying = true;
       btn.classList.add('playing');
       btn.querySelector('.ambient-status').textContent = 'Ambiyans: Açık';
