@@ -1,0 +1,14 @@
+# Development & Raw design files
+Psikobadem 5. Sayı/
+folder_ref.png
+assets/preview_*
+assets/test_*
+assets/crop_*
+assets/generated_*
+assets/reference_design.jpg
+assets/logo_original.jpg
+.DS_Store
+Thumbs.db
+*.log
+scratch/
+

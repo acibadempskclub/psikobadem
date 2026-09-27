@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Psikobadem Dergisi | Acıbadem Üniversitesi Psikoloji Kulübü</title>
+  <meta name="description" content="Acıbadem Üniversitesi Psikoloji Kulübü resmi yayını Psikobadem Dergisi. Tüm sayıları interaktif dijital flipbook formatında okuyun.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       SCENE & ATMOSPHERE (Terracotta Writer's Room with Depth Blur)
+       ========================================================================= -->
+  <div class="scene-container">
+    <div class="bg-layer" aria-hidden="true"></div>
+    <div class="bg-overlay" aria-hidden="true"></div>
+    <div class="bg-warmth" aria-hidden="true"></div>
+    <div class="particles-layer" aria-hidden="true"></div>
+
+    <!-- Top Navigation Bar -->
+    <header class="top-bar">
+      <a href="#" class="brand-group" aria-label="Psikobadem Dergisi Ana Sayfa">
+        <div class="brand-logo-wrap">
+          <img src="assets/logo.png" alt="Acıbadem Üniversitesi Psikoloji Kulübü Logosu" class="brand-logo" width="46" height="46">
+        </div>
+        <div class="brand-text">
+          <span class="brand-institution">Acıbadem Üniversitesi</span>
+          <h1 class="brand-title">PSİKOBADEM</h1>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <!-- Ambient Sound Player Toggle -->
+        <button id="btn-ambient" class="btn-ambient" title="Yazar odası ambiyans sesini aç/kapat" aria-label="Ambiyans Sesi">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+          </svg>
+          <span class="ambient-status hide-mobile">Ambiyans: Kapalı</span>
+        </button>
+
+        <!-- Instagram Link -->
+        <a href="https://www.instagram.com/acupsikolojikulubu/" target="_blank" rel="noopener noreferrer" class="btn-social" aria-label="Kulüp Instagram Sayfası">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span class="hide-mobile">Instagram</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- =========================================================================
+         MAIN INTERACTIVE DOSSIER (7 LAYERED FOLDERS)
+         ========================================================================= -->
+    <main class="main-stage">
+      <div class="folder-dossier" id="folder-dossier">
+
+        <!-- 1. Katmanı -->
+        <article class="folder-item" data-index="1" role="button" tabindex="0" aria-label="1. Sayı: Pozitif Psikoloji">
+          <svg viewBox="0 0 610 760" class="folder-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="grad_1" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#844131"/>
+                <stop offset="100%" stop-color="#733729"/>
+              </linearGradient>
+            </defs>
+            <path class="folder-shape" d="M 25 750 L 25 113 Q 25 95 43 95 L 393 95 C 415 95, 411 42, 437 42 L 566 42 Q 582 42 582 58 L 582 750 Z" fill="url(#grad_1)"/>
+            <path class="folder-highlight" d="M 25 750 L 25 113 Q 25 95 43 95 L 393 95 C 415 95, 411 42, 437 42 L 566 42 Q 582 42 582 58 L 582 750 Z" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+            <g class="tab-badge-group">
+              <path d="M 461 52 L 537 52 L 543 58 L 543 80 L 537 86 L 461 86 L 455 80 L 455 58 Z" fill="#faf5ea" stroke="#703123" stroke-width="1.2"/>
+              <path d="M 462 55 L 536 55 L 540 59 L 540 79 L 536 83 L 462 83 L 458 79 L 458 59 Z" fill="none" stroke="#703123" stroke-width="0.8"/>
+              <text x="499.0" y="74.0" font-family="'Playfair Display', Georgia, serif" font-size="18" font-weight="bold" fill="#30130c" text-anchor="middle" letter-spacing="0.5">1.</text>
+            </g>
+          </svg>
+          <div class="folder-tooltip">1. Sayı: Pozitif Psikoloji</div>
+
+          <div class="front-cover-showcase">
+            <div class="magazine-preview-card" role="button" tabindex="0" title="1. Sayıyı okumak için tıklayın">
+              <div class="paperclip" aria-hidden="true"></div>
+              <img src="assets/covers/cover_1.jpg" alt="Psikobadem 1. Sayı Kapağı" width="185" height="262">
+              <div class="card-glare" aria-hidden="true"></div>
+            </div>
+            <div class="front-prompt-info" role="button" tabindex="0">
+              <div class="prompt-badge">1. SAYI</div>
+              <div class="prompt-title-group">
+                <span class="prompt-line-1">Psikobadem</span>
+                <span class="prompt-line-2">1. Sayı</span>
+              </div>
+              <div class="prompt-theme-sub">Tema: Pozitif Psikoloji</div>
+              <button type="button" class="prompt-hint-pill" aria-label="1. Sayıyı Aç">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                </svg>
+                <span>Tıklayarak oku</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Katmanı -->
+        <article class="folder-item" data-index="2" role="button" tabindex="0" aria-label="2. Sayı: Bağlanma ve İlişkiler">
+          <svg viewBox="0 0 610 760" class="folder-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="grad_2" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#a24835"/>
+                <stop offset="100%" stop-color="#8f3e2e"/>
+              </linearGradient>
+            </defs>
+            <path class="folder-shape" d="M 37 750 L 37 170 Q 37 152 55 152 L 393 152 C 415 152, 411 99, 437 99 L 566 99 Q 582 99 582 115 L 582 750 Z" fill="url(#grad_2)"/>
+            <path class="folder-highlight" d="M 37 750 L 37 170 Q 37 152 55 152 L 393 152 C 415 152, 411 99, 437 99 L 566 99 Q 582 99 582 115 L 582 750 Z" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+            <g class="tab-badge-group">
+              <path d="M 461 109 L 537 109 L 543 115 L 543 137 L 537 143 L 461 143 L 455 137 L 455 115 Z" fill="#faf5ea" stroke="#703123" stroke-width="1.2"/>
+              <path d="M 462 112 L 536 112 L 540 116 L 540 136 L 536 140 L 462 140 L 458 136 L 458 116 Z" fill="none" stroke="#703123" stroke-width="0.8"/>
+              <text x="499.0" y="131.0" font-family="'Playfair Display', Georgia, serif" font-size="18" font-weight="bold" fill="#30130c" text-anchor="middle" letter-spacing="0.5">2.</text>
+            </g>
+          </svg>
+          <div class="folder-tooltip">2. Sayı: Bağlanma ve İlişkiler</div>
+
+          <div class="front-cover-showcase">
+            <div class="magazine-preview-card" role="button" tabindex="0" title="2. Sayıyı okumak için tıklayın">
+              <div class="paperclip" aria-hidden="true"></div>
+              <img src="assets/covers/cover_2.jpg" alt="Psikobadem 2. Sayı Kapağı" width="185" height="262">
+              <div class="card-glare" aria-hidden="true"></div>
+            </div>
+            <div class="front-prompt-info" role="button" tabindex="0">
+              <div class="prompt-badge">2. SAYI</div>
+              <div class="prompt-title-group">
+                <span class="prompt-line-1">Psikobadem</span>
+                <span class="prompt-line-2">2. Sayı</span>
+              </div>
+              <div class="prompt-theme-sub">Tema: Bağlanma ve İlişkiler</div>
+              <button type="button" class="prompt-hint-pill" aria-label="2. Sayıyı Aç">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                </svg>
+                <span>Tıklayarak oku</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Katmanı -->
+        <article class="folder-item" data-index="3" role="button" tabindex="0" aria-label="3. Sayı: Yas Psikolojisi">
+          <svg viewBox="0 0 610 760" class="folder-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="grad_3" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#bd604b"/>
+                <stop offset="100%" stop-color="#aa5440"/>
+              </linearGradient>
+            </defs>
+            <path class="folder-shape" d="M 49 750 L 49 227 Q 49 209 67 209 L 393 209 C 415 209, 411 156, 437 156 L 566 156 Q 582 156 582 172 L 582 750 Z" fill="url(#grad_3)"/>
+            <path class="folder-highlight" d="M 49 750 L 49 227 Q 49 209 67 209 L 393 209 C 415 209, 411 156, 437 156 L 566 156 Q 582 156 582 172 L 582 750 Z" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+            <g class="tab-badge-group">
+              <path d="M 461 166 L 537 166 L 543 172 L 543 194 L 537 200 L 461 200 L 455 194 L 455 172 Z" fill="#faf5ea" stroke="#703123" stroke-width="1.2"/>
+              <path d="M 462 169 L 536 169 L 540 173 L 540 193 L 536 197 L 462 197 L 458 193 L 458 173 Z" fill="none" stroke="#703123" stroke-width="0.8"/>
+              <text x="499.0" y="188.0" font-family="'Playfair Display', Georgia, serif" font-size="18" font-weight="bold" fill="#30130c" text-anchor="middle" letter-spacing="0.5">3.</text>
+            </g>
+          </svg>
+          <div class="folder-tooltip">3. Sayı: Yas Psikolojisi</div>
+
+          <div class="front-cover-showcase">
+            <div class="magazine-preview-card" role="button" tabindex="0" title="3. Sayıyı okumak için tıklayın">
+              <div class="paperclip" aria-hidden="true"></div>
+              <img src="assets/covers/cover_3.jpg" alt="Psikobadem 3. Sayı Kapağı" width="185" height="262">
+              <div class="card-glare" aria-hidden="true"></div>
+            </div>
+            <div class="front-prompt-info" role="button" tabindex="0">
+              <div class="prompt-badge">3. SAYI</div>
+              <div class="prompt-title-group">
+                <span class="prompt-line-1">Psikobadem</span>
+                <span class="prompt-line-2">3. Sayı</span>
+              </div>
+              <div class="prompt-theme-sub">Tema: Yas Psikolojisi</div>
+              <button type="button" class="prompt-hint-pill" aria-label="3. Sayıyı Aç">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                </svg>
+                <span>Tıklayarak oku</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Katmanı -->
+        <article class="folder-item" data-index="4" role="button" tabindex="0" aria-label="4. Sayı: Yeni Yıl ve OKB">
+          <svg viewBox="0 0 610 760" class="folder-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="grad_4" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#b97047"/>
+                <stop offset="100%" stop-color="#a7623d"/>
+              </linearGradient>
+            </defs>
+            <path class="folder-shape" d="M 61 750 L 61 284 Q 61 266 79 266 L 393 266 C 415 266, 411 213, 437 213 L 566 213 Q 582 213 582 229 L 582 750 Z" fill="url(#grad_4)"/>
+            <path class="folder-highlight" d="M 61 750 L 61 284 Q 61 266 79 266 L 393 266 C 415 266, 411 213, 437 213 L 566 213 Q 582 213 582 229 L 582 750 Z" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+            <g class="tab-badge-group">
+              <path d="M 461 223 L 537 223 L 543 229 L 543 251 L 537 257 L 461 257 L 455 251 L 455 229 Z" fill="#faf5ea" stroke="#703123" stroke-width="1.2"/>
+              <path d="M 462 226 L 536 226 L 540 230 L 540 250 L 536 254 L 462 254 L 458 250 L 458 230 Z" fill="none" stroke="#703123" stroke-width="0.8"/>
+              <text x="499.0" y="245.0" font-family="'Playfair Display', Georgia, serif" font-size="18" font-weight="bold" fill="#30130c" text-anchor="middle" letter-spacing="0.5">4.</text>
+            </g>
+          </svg>
+          <div class="folder-tooltip">4. Sayı: Yeni Yıl ve OKB</div>
+
+          <div class="front-cover-showcase">
+            <div class="magazine-preview-card" role="button" tabindex="0" title="4. Sayıyı okumak için tıklayın">
+              <div class="paperclip" aria-hidden="true"></div>
+              <img src="assets/covers/cover_4.jpg" alt="Psikobadem 4. Sayı Kapağı" width="185" height="262">
+              <div class="card-glare" aria-hidden="true"></div>
+            </div>
+            <div class="front-prompt-info" role="button" tabindex="0">
+              <div class="prompt-badge">4. SAYI</div>
+              <div class="prompt-title-group">
+                <span class="prompt-line-1">Psikobadem</span>
+                <span class="prompt-line-2">4. Sayı</span>
+              </div>
+              <div class="prompt-theme-sub">Tema: Yeni Yıl ve OKB</div>
+              <button type="button" class="prompt-hint-pill" aria-label="4. Sayıyı Aç">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                </svg>
+                <span>Tıklayarak oku</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Katmanı -->
+        <article class="folder-item" data-index="5" role="button" tabindex="0" aria-label="5. Sayı: Bahar Edisyonu">
+          <svg viewBox="0 0 610 760" class="folder-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="grad_5" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#8e4737"/>
+                <stop offset="100%" stop-color="#7c3c2e"/>
+              </linearGradient>
+            </defs>
+            <path class="folder-shape" d="M 73 750 L 73 341 Q 73 323 91 323 L 393 323 C 415 323, 411 270, 437 270 L 566 270 Q 582 270 582 286 L 582 750 Z" fill="url(#grad_5)"/>
+            <path class="folder-highlight" d="M 73 750 L 73 341 Q 73 323 91 323 L 393 323 C 415 323, 411 270, 437 270 L 566 270 Q 582 270 582 286 L 582 750 Z" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+            <g class="tab-badge-group">
+              <path d="M 461 280 L 537 280 L 543 286 L 543 308 L 537 314 L 461 314 L 455 308 L 455 286 Z" fill="#faf5ea" stroke="#703123" stroke-width="1.2"/>
+              <path d="M 462 283 L 536 283 L 540 287 L 540 307 L 536 311 L 462 311 L 458 307 L 458 287 Z" fill="none" stroke="#703123" stroke-width="0.8"/>
+              <text x="499.0" y="302.0" font-family="'Playfair Display', Georgia, serif" font-size="18" font-weight="bold" fill="#30130c" text-anchor="middle" letter-spacing="0.5">5.</text>
+            </g>
+          </svg>
+          <div class="folder-tooltip">5. Sayı: Bahar Edisyonu</div>
+
+          <div class="front-cover-showcase">
+            <div class="magazine-preview-card" role="button" tabindex="0" title="5. Sayıyı okumak için tıklayın">
+              <div class="paperclip" aria-hidden="true"></div>
+              <img src="assets/covers/cover_5.webp" alt="Psikobadem 5. Sayı Kapağı" width="185" height="262">
+              <div class="card-glare" aria-hidden="true"></div>
+            </div>
+            <div class="front-prompt-info" role="button" tabindex="0">
+              <div class="prompt-badge">5. SAYI</div>
+              <div class="prompt-title-group">
+                <span class="prompt-line-1">Psikobadem</span>
+                <span class="prompt-line-2">5. Sayı</span>
+              </div>
+              <div class="prompt-theme-sub">Bahar Edisyonu (34 Sayfa Vektörel)</div>
+              <button type="button" class="prompt-hint-pill" aria-label="5. Sayıyı Aç">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                </svg>
+                <span>Tıklayarak oku</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Katmanı -->
+        <article class="folder-item" data-index="6" role="button" tabindex="0" aria-label="6. Sayı: Psikobadem 6">
+          <svg viewBox="0 0 610 760" class="folder-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="grad_6" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#91604e"/>
+                <stop offset="100%" stop-color="#7f5342"/>
+              </linearGradient>
+            </defs>
+            <path class="folder-shape" d="M 85 750 L 85 398 Q 85 380 103 380 L 393 380 C 415 380, 411 327, 437 327 L 566 327 Q 582 327 582 343 L 582 750 Z" fill="url(#grad_6)"/>
+            <path class="folder-highlight" d="M 85 750 L 85 398 Q 85 380 103 380 L 393 380 C 415 380, 411 327, 437 327 L 566 327 Q 582 327 582 343 L 582 750 Z" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+            <g class="tab-badge-group">
+              <path d="M 461 337 L 537 337 L 543 343 L 543 365 L 537 371 L 461 371 L 455 365 L 455 343 Z" fill="#faf5ea" stroke="#703123" stroke-width="1.2"/>
+              <path d="M 462 340 L 536 340 L 540 344 L 540 364 L 536 368 L 462 368 L 458 364 L 458 344 Z" fill="none" stroke="#703123" stroke-width="0.8"/>
+              <text x="499.0" y="359.0" font-family="'Playfair Display', Georgia, serif" font-size="18" font-weight="bold" fill="#30130c" text-anchor="middle" letter-spacing="0.5">6.</text>
+            </g>
+          </svg>
+          <div class="folder-tooltip">6. Sayı: Psikobadem 6</div>
+
+          <div class="front-cover-showcase">
+            <div class="magazine-preview-card" role="button" tabindex="0" title="6. Sayıyı okumak için tıklayın">
+              <div class="paperclip" aria-hidden="true"></div>
+              <img src="assets/covers/cover_6.jpg" alt="Psikobadem 6. Sayı Kapağı" width="185" height="262">
+              <div class="card-glare" aria-hidden="true"></div>
+            </div>
+            <div class="front-prompt-info" role="button" tabindex="0">
+              <div class="prompt-badge">6. SAYI</div>
+              <div class="prompt-title-group">
+                <span class="prompt-line-1">Psikobadem</span>
+                <span class="prompt-line-2">6. Sayı</span>
+              </div>
+              <div class="prompt-theme-sub">Değişen Dünyada Psikoloji</div>
+              <button type="button" class="prompt-hint-pill" aria-label="6. Sayıyı Aç">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                </svg>
+                <span>Tıklayarak oku</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- SON SAYI Katmanı (En Öndeki Klasör) -->
+        <article class="folder-item" data-index="7" role="button" tabindex="0" aria-label="Son Sayı: Psikobadem 6">
+          <svg viewBox="0 0 610 760" class="folder-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="grad_7" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#a95337"/>
+                <stop offset="100%" stop-color="#96482f"/>
+              </linearGradient>
+            </defs>
+            <path class="folder-shape" d="M 97 750 L 97 455 Q 97 437 115 437 L 348 437 C 370 437, 366 384, 392 384 L 566 384 Q 582 384 582 400 L 582 750 Z" fill="url(#grad_7)"/>
+            <path class="folder-highlight" d="M 97 750 L 97 455 Q 97 437 115 437 L 348 437 C 370 437, 366 384, 392 384 L 566 384 Q 582 384 582 400 L 582 750 Z" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+            <g class="tab-badge-group">
+              <path d="M 406 394 L 536 394 L 542 400 L 542 424 L 536 430 L 406 430 L 400 424 L 400 400 Z" fill="#faf5ea" stroke="#703123" stroke-width="1.2"/>
+              <path d="M 407 397 L 535 397 L 539 401 L 539 423 L 535 427 L 407 427 L 403 423 L 403 401 Z" fill="none" stroke="#703123" stroke-width="0.8"/>
+              <text x="471.0" y="417.0" font-family="'Playfair Display', Georgia, serif" font-size="13" font-weight="bold" fill="#30130c" text-anchor="middle" letter-spacing="1">SON SAYI</text>
+            </g>
+          </svg>
+          <div class="folder-tooltip">Son Sayı: Psikobadem 6</div>
+
+          <!-- Ön Kapak Vitrini: Dergi Kapağı ve Çağrı Metni -->
+          <div class="front-cover-showcase" id="front-cover-showcase">
+            <!-- Derginin İlk Sayfası (Kapak Önizleme Kartı) -->
+            <div class="magazine-preview-card" id="magazine-preview-card" role="button" tabindex="0" title="Dergiyi okumak için tıklayın">
+              <div class="paperclip" aria-hidden="true"></div>
+              <img id="front-cover-img" src="assets/covers/cover_6.jpg" alt="Psikobadem Dergisi Kapağı" width="165" height="235">
+              <div class="card-glare" aria-hidden="true"></div>
+            </div>
+
+            <!-- İstek Metni & Detaylar -->
+            <div class="front-prompt-info" id="front-prompt-info" role="button" tabindex="0">
+              <div class="prompt-badge" id="preview-issue-badge">SON SAYI</div>
+              <div class="prompt-title-group">
+                <span class="prompt-line-1">okumak istediğiniz</span>
+                <span class="prompt-line-2">sayıya tıklayın</span>
+              </div>
+              <div class="prompt-theme-sub" id="preview-issue-theme">Psikobadem 6. Sayı</div>
+              <button type="button" class="prompt-hint-pill" id="btn-read-now" aria-label="Dergiyi Aç">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                </svg>
+                <span>Tıklayarak oku</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- =========================================================================
+             TAB CLICKABLE HITBOXES (Guarantees 100% Reliable Clicks on All Tabs)
+             ========================================================================= -->
+        <nav class="tab-hitboxes-layer" aria-label="Klasör Sekmeleri">
+          <button type="button" class="tab-hitbox" data-tab-index="1" title="1. Sayı: Pozitif Psikoloji" aria-label="1. Sayı Sekmesi"></button>
+          <button type="button" class="tab-hitbox" data-tab-index="2" title="2. Sayı: Bağlanma ve İlişkiler" aria-label="2. Sayı Sekmesi"></button>
+          <button type="button" class="tab-hitbox" data-tab-index="3" title="3. Sayı: Yas Psikolojisi" aria-label="3. Sayı Sekmesi"></button>
+          <button type="button" class="tab-hitbox" data-tab-index="4" title="4. Sayı: Yeni Yıl ve OKB" aria-label="4. Sayı Sekmesi"></button>
+          <button type="button" class="tab-hitbox" data-tab-index="5" title="5. Sayı: Bahar Edisyonu" aria-label="5. Sayı Sekmesi"></button>
+          <button type="button" class="tab-hitbox" data-tab-index="6" title="6. Sayı: Psikobadem 6" aria-label="6. Sayı Sekmesi"></button>
+          <button type="button" class="tab-hitbox" data-tab-index="7" title="Son Sayı: Psikobadem 6" aria-label="Son Sayı Sekmesi"></button>
+        </nav>
+
+      </div>
+
+      <!-- Desk Surface Laurel Badge (Under Folders) -->
+      <div class="scene-emblem-wrap" aria-hidden="true">
+        <div class="scene-emblem">
+          <img src="assets/logo.png" alt="Acıbadem Üniversitesi Psikoloji Kulübü Amblemi" width="60" height="60">
+        </div>
+        <span class="scene-signature">ACIBADEM PSİKOLOJİ</span>
+      </div>
+    </main>
+
+    <!-- Footer Bar -->
+    <footer class="footer-bar">
+      <div class="footer-credits">
+        <span>© 2026 Acıbadem Üniversitesi Psikoloji Kulübü</span>
+        <span>•</span>
+        <span>Psikobadem Dergisi Arşivi</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://sites.google.com/view/psikobadem-dergisi/psikobadem" target="_blank" rel="noopener noreferrer" class="footer-link">Google Sites</a>
+        <a href="mailto:acupsikolojikulubu@gmail.com" class="footer-link">İletişim</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- =========================================================================
+       INTERACTIVE FLIPBOOK READER MODAL (FULLSCREEN)
+       ========================================================================= -->
+  <div id="reader-modal" class="reader-modal" role="dialog" aria-modal="true" aria-label="Dergi Okuyucu">
+    <!-- Header Controls -->
+    <div class="reader-header">
+      <div class="reader-left">
+        <button id="btn-back" class="btn-back" aria-label="Klasörlere Geri Dön">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+          <span>Klasörlere Dön</span>
+        </button>
+
+        <div class="reader-issue-info">
+          <span id="reader-issue-number" class="reader-issue-number">1. Sayı</span>
+          <span id="reader-issue-theme" class="reader-issue-theme">Tema: Pozitif Psikoloji</span>
+        </div>
+      </div>
+
+      <!-- Quick Switcher Bar -->
+      <nav class="reader-switcher" aria-label="Sayılar Arası Geçiş">
+        <button class="switch-pill" data-switch-to="1">1. Sayı</button>
+        <button class="switch-pill" data-switch-to="2">2. Sayı</button>
+        <button class="switch-pill" data-switch-to="3">3. Sayı</button>
+        <button class="switch-pill" data-switch-to="4">4. Sayı</button>
+        <button class="switch-pill" data-switch-to="5">5. Sayı</button>
+        <button class="switch-pill" data-switch-to="6">6. Sayı</button>
+        <button class="switch-pill" data-switch-to="7">Son Sayı</button>
+      </nav>
+
+      <!-- Right Action Icons -->
+      <div class="reader-right">
+        <!-- Sound Effect Toggle -->
+        <button id="btn-sound-toggle" class="reader-action-btn" title="Sayfa Çevirme Sesi" aria-label="Sayfa Çevirme Sesi">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+          </svg>
+        </button>
+
+        <!-- Fullscreen Toggle -->
+        <button id="btn-fullscreen" class="reader-action-btn" title="Tam Ekran" aria-label="Tam Ekran">
+          <svg viewBox="0 0 24 24">
+            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+          </svg>
+        </button>
+
+        <!-- Direct External Link -->
+        <a id="btn-external" href="#" target="_blank" rel="noopener noreferrer" class="reader-action-btn" title="Bağlantıyı Yeni Sekmede Aç" aria-label="Yeni Sekmede Aç">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+          </svg>
+        </a>
+
+        <!-- Close Modal -->
+        <button id="btn-close" class="reader-action-btn" title="Kapat" aria-label="Kapat">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Reader Body Area -->
+    <div class="reader-body">
+      <!-- 1. Iframe Viewer (For Heyzine & FlipHTML5: Sayı 1, 2, 3, 4, 6) -->
+      <div id="iframe-wrap" class="iframe-reader-wrap">
+        <iframe id="flipbook-iframe" src="about:blank" allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" title="İnteraktif Dergi"></iframe>
+      </div>
+
+      <!-- 2. Native StPageFlip Viewer (For Sayı 5 & Özel/Son Sayı) -->
+      <div id="native-wrap" class="native-flipbook-wrap" style="display: none;">
+        <div class="flipbook-stage">
+          <div id="flipbook-book"></div>
+        </div>
+
+        <!-- Navigation & Page Scrubber Bar -->
+        <div class="native-toolbar">
+          <button id="btn-prev-page" class="toolbar-btn" aria-label="Önceki Sayfa">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+            <span>Önceki</span>
+          </button>
+
+          <span id="page-counter" class="page-counter">Sayfa 1 / 34</span>
+
+          <button id="btn-next-page" class="toolbar-btn" aria-label="Sonraki Sayfa">
+            <span>Sonraki</span>
+            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- StPageFlip Library -->
+  <script src="assets/page-flip.browser.js"></script>
+  <!-- Application Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>

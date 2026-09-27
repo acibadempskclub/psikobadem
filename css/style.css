@@ -1,0 +1,1325 @@
+/* ==========================================================================
+   PSİKOBADEM DERGİSİ - ACIBADEM ÜNİVERSİTESİ PSİKOLOJİ KULÜBÜ
+   Interactive Dossier & Flipbook Reader
+   Design System & Styling
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Terracotta & Earth Palette */
+  --bg-terracotta-dark: #3a150c;
+  --bg-terracotta-tint: rgba(138, 48, 27, 0.48);
+  --bg-vignette: radial-gradient(circle at 50% 45%, rgba(162, 60, 36, 0.35) 0%, rgba(38, 12, 6, 0.88) 100%);
+  
+  /* Folder Layer Colors (from reference design) */
+  --folder-1: #6a2e20; /* Deep burnt crimson */
+  --folder-2: #7a3224; /* Rich terracotta */
+  --folder-3: #923a26; /* Warm brick red */
+  --folder-4: #b05c43; /* Terracotta cinnamon */
+  --folder-5: #955431; /* Warm saddle leather */
+  --folder-6: #935a46; /* Chestnut terracotta */
+  --folder-7: #7a432e; /* Warm rust leather (Front Cover) */
+  
+  /* Label & Badge Tokens */
+  --badge-bg: #f9f5ec;
+  --badge-border: #8b3e2b;
+  --badge-text: #3c180e;
+  --badge-gold: #c89552;
+  
+  /* Text & Accent Tokens */
+  --text-ivory: #faf3e8;
+  --text-cream: #eedbc7;
+  --text-muted: #b89b87;
+  --accent-gold: #d4a359;
+  --accent-terracotta: #c44f33;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Elevations */
+  --shadow-folder: 0 14px 38px rgba(18, 5, 2, 0.55), 0 4px 12px rgba(0, 0, 0, 0.28);
+  --shadow-tab: 0 -4px 12px rgba(18, 5, 2, 0.35);
+  --shadow-glow: 0 0 25px rgba(220, 110, 80, 0.35);
+
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.35, 1);
+  --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background-color: #1a0a06;
+  color: var(--text-ivory);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   SCENE & ATMOSPHERIC BACKGROUND
+   ========================================================================== */
+.scene-container {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Photorealistic Writer's Room with Terracotta Color Grade & Gaussian Blur */
+.bg-layer {
+  position: fixed;
+  inset: -30px;
+  background-image: url('../assets/writer_room_bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: blur(14px) brightness(0.68) saturate(1.22) contrast(1.08);
+  transform: scale(1.06);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Terracotta Hue Filter & Cinematic Vignette */
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-vignette);
+  mix-blend-mode: multiply;
+  opacity: 0.94;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-warmth {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(200, 75, 45, 0.28) 0%, rgba(60, 15, 8, 0.5) 85%);
+  mix-blend-mode: color-dodge;
+  opacity: 0.65;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Subtle Floating Bokeh Particles */
+.particles-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 235, 205, 0.55), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 90px 140px, rgba(255, 220, 180, 0.4), rgba(0,0,0,0)),
+    radial-gradient(3px 3px at 220px 70px, rgba(255, 240, 210, 0.45), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 340px 280px, rgba(255, 225, 190, 0.45), rgba(0,0,0,0)),
+    radial-gradient(2.5px 2.5px at 500px 180px, rgba(255, 235, 200, 0.5), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 700px 320px, rgba(255, 240, 220, 0.35), rgba(0,0,0,0));
+  background-size: 800px 800px;
+  animation: floatDust 45s linear infinite;
+  opacity: 0.45;
+}
+
+@keyframes floatDust {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* ==========================================================================
+   TOP BAR / NAVIGATION
+   ========================================================================== */
+.top-bar {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1400px;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-logo-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.brand-group:hover .brand-logo-wrap {
+  transform: scale(1.08) rotate(4deg);
+  box-shadow: 0 6px 20px rgba(212, 163, 89, 0.45), 0 0 0 2px var(--accent-gold);
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-institution {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-ivory);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.btn-ambient, .btn-social {
+  background: rgba(45, 16, 10, 0.65);
+  border: 1px solid rgba(220, 150, 120, 0.25);
+  color: var(--text-cream);
+  padding: 0.55rem 1rem;
+  border-radius: 30px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: var(--transition-smooth);
+  text-decoration: none;
+}
+
+.btn-ambient:hover, .btn-social:hover {
+  background: rgba(140, 50, 30, 0.75);
+  border-color: var(--accent-gold);
+  color: var(--text-ivory);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.btn-ambient.playing {
+  background: rgba(180, 70, 40, 0.85);
+  border-color: #ffd28c;
+  color: #fff;
+  box-shadow: 0 0 18px rgba(220, 120, 70, 0.5);
+}
+
+.btn-ambient svg, .btn-social svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   CENTERSTAGE: THE 3D INTERACTIVE FOLDER STACK
+   ========================================================================== */
+.main-stage {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem 1rem;
+  perspective: 1400px;
+}
+
+/* Folder Dossier Wrapper */
+.folder-dossier {
+  position: relative;
+  width: min(510px, 86vw);
+  aspect-ratio: 610 / 760;
+  margin: 0 auto;
+  perspective: 1200px;
+}
+
+/* Individual Folder Item Layer */
+.folder-item {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  pointer-events: none; /* Pointer events are handled by tab hitboxes & front showcase */
+  transform-origin: bottom center;
+  transition: transform 0.38s cubic-bezier(0.2, 1, 0.3, 1),
+              filter 0.35s ease;
+  user-select: none;
+}
+
+/* Stacking Order */
+.folder-item[data-index="1"] { z-index: 1; }
+.folder-item[data-index="2"] { z-index: 2; }
+.folder-item[data-index="3"] { z-index: 3; }
+.folder-item[data-index="4"] { z-index: 4; }
+.folder-item[data-index="5"] { z-index: 5; }
+.folder-item[data-index="6"] { z-index: 6; }
+.folder-item[data-index="7"] { z-index: 7; }
+
+/* SVG Canvas */
+.folder-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 -3px 8px rgba(0, 0, 0, 0.35)) drop-shadow(0 10px 22px rgba(18, 5, 2, 0.45));
+  transition: filter 0.35s ease;
+}
+
+/* Folder Shape & Highlights */
+.folder-shape {
+  transition: fill 0.3s ease;
+}
+
+.folder-highlight {
+  pointer-events: none;
+}
+
+.tab-badge-group {
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Peek Magazine Cover inside Folders 1 to 6 */
+.folder-peek-card {
+  position: absolute;
+  top: 14%;
+  left: 18%;
+  width: 135px;
+  max-width: 32%;
+  aspect-ratio: 1 / 1.414;
+  background: #ffffff;
+  padding: 3.5px;
+  border-radius: 5px;
+  box-shadow: 0 12px 30px rgba(10, 3, 1, 0.75), 0 2px 6px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(35px) rotate(-1.5deg);
+  transition: all 0.38s cubic-bezier(0.2, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 12;
+}
+
+.folder-peek-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+
+/* Hover & Active Lift States */
+.folder-item.is-hovered {
+  transform: translateY(-28px);
+  z-index: 35 !important;
+}
+
+.folder-item.is-hovered .folder-svg {
+  filter: drop-shadow(0 -8px 18px rgba(220, 110, 75, 0.55)) drop-shadow(0 22px 45px rgba(10, 3, 1, 0.8)) brightness(1.12);
+}
+
+.folder-item.is-hovered .tab-badge-group {
+  filter: brightness(1.18) drop-shadow(0 0 6px rgba(255, 240, 200, 0.65));
+}
+
+.folder-item.is-hovered .folder-peek-card {
+  opacity: 1;
+  transform: translateY(-16px) rotate(-2deg);
+}
+
+/* Active / Opening State */
+.folder-item.opening {
+  transform: translateY(-60px) scale(1.03);
+  z-index: 40 !important;
+}
+
+/* Hover Theme Tooltip Badge */
+.folder-tooltip {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  background: rgba(30, 10, 6, 0.92);
+  border: 1px solid rgba(220, 160, 120, 0.45);
+  color: var(--accent-gold);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.folder-item.is-hovered .folder-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   FRONT COVER SHOWCASE (Magazine Cover Preview on Folders)
+   ========================================================================== */
+.front-cover-showcase {
+  position: absolute;
+  top: 51.5%;
+  bottom: 2%;
+  left: 13.5%;
+  right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  pointer-events: auto;
+  z-index: 45;
+}
+
+/* Realistic Magazine Cover Preview Card - Enlarged & Prominent */
+.magazine-preview-card {
+  position: relative;
+  height: 94%;
+  max-height: 285px;
+  aspect-ratio: 1 / 1.414;
+  background: #ffffff;
+  padding: 4px;
+  border-radius: 6px;
+  box-shadow: 0 14px 34px rgba(10, 3, 1, 0.8), 0 3px 8px rgba(0, 0, 0, 0.38);
+  transform: rotate(-2deg);
+  transition: transform 0.35s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.35s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.magazine-preview-card:hover {
+  transform: rotate(0deg) translateY(-6px) scale(1.03);
+  box-shadow: 0 20px 42px rgba(8, 2, 1, 0.88), 0 0 22px rgba(220, 110, 70, 0.45);
+}
+
+.magazine-preview-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+/* Realistic Silver Paperclip */
+.paperclip {
+  position: absolute;
+  top: -12px;
+  left: 18px;
+  width: 13px;
+  height: 29px;
+  border: 2.2px solid #e2e8f0;
+  border-radius: 6px;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.4);
+  z-index: 15;
+  pointer-events: none;
+}
+
+.paperclip::before {
+  content: '';
+  position: absolute;
+  top: 3.5px;
+  left: 1.5px;
+  width: 4px;
+  height: 15px;
+  border: 1.6px solid #cbd5e1;
+  border-radius: 3px;
+}
+
+/* Glossy Glare effect on card */
+.card-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 55%);
+  pointer-events: none;
+}
+
+/* Front Prompt & Metadata */
+.front-prompt-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  user-select: none;
+  cursor: pointer;
+}
+
+.prompt-badge {
+  display: inline-block;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  padding: 2.5px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--badge-border);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  margin-bottom: 0.35rem;
+  transition: all 0.3s ease;
+}
+
+.prompt-title-group {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.1vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: #f7efe4;
+  text-shadow: 0 2px 8px rgba(15, 3, 1, 0.85);
+  letter-spacing: 0.2px;
+}
+
+.prompt-title-group .prompt-line-1,
+.prompt-title-group .prompt-line-2 {
+  display: block;
+}
+
+.prompt-theme-sub {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+  letter-spacing: 0.4px;
+  margin-top: 0.35rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.prompt-hint-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(35, 12, 7, 0.75);
+  border: 1px solid rgba(220, 140, 100, 0.35);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.72rem;
+  font-family: inherit;
+  font-weight: 600;
+  color: #eedbc7;
+  margin-top: 0.5rem;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.prompt-hint-pill:hover {
+  background: var(--accent-terracotta);
+  border-color: var(--accent-gold);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* ==========================================================================
+   TAB HITBOXES OVERLAY (Guarantees 100% Clickability on All Devices)
+   ========================================================================== */
+.tab-hitboxes-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+}
+
+.tab-hitbox {
+  position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+  border-radius: 12px 12px 0 0;
+  -webkit-tap-highlight-color: rgba(220, 110, 70, 0.25);
+  transition: background 0.2s ease;
+}
+
+.tab-hitbox[data-tab-index="1"] { top: 5.2%; left: 68%; width: 28%; height: 7.4%; }
+.tab-hitbox[data-tab-index="2"] { top: 12.6%; left: 68%; width: 28%; height: 7.4%; }
+.tab-hitbox[data-tab-index="3"] { top: 20.0%; left: 68%; width: 28%; height: 7.4%; }
+.tab-hitbox[data-tab-index="4"] { top: 27.5%; left: 68%; width: 28%; height: 7.4%; }
+.tab-hitbox[data-tab-index="5"] { top: 35.0%; left: 68%; width: 28%; height: 7.4%; }
+.tab-hitbox[data-tab-index="6"] { top: 42.4%; left: 68%; width: 28%; height: 7.4%; }
+.tab-hitbox[data-tab-index="7"] { top: 49.8%; left: 60%; width: 36%; height: 7.6%; }
+
+.tab-hitbox:hover, .tab-hitbox:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Desk Surface Laurel Badge */
+.scene-emblem-wrap {
+  margin-top: 0.6rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+}
+
+.scene-emblem {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 3px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.25);
+  transition: transform 0.4s ease;
+}
+
+.scene-emblem:hover {
+  transform: rotate(6deg) scale(1.08);
+}
+
+.scene-emblem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.scene-signature {
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 240, 225, 0.75);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   INTERACTIVE FLIPBOOK READER MODAL
+   ========================================================================== */
+.reader-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(14, 5, 3, 0.94);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.reader-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Reader Navigation Header */
+.reader-header {
+  width: 100%;
+  padding: 0.85rem 1.75rem;
+  background: rgba(28, 10, 6, 0.92);
+  border-bottom: 1px solid rgba(212, 140, 95, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 10;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.reader-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.btn-back {
+  background: rgba(120, 45, 25, 0.65);
+  border: 1px solid rgba(220, 160, 120, 0.35);
+  color: var(--text-ivory);
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-back:hover {
+  background: var(--accent-terracotta);
+  border-color: var(--accent-gold);
+  transform: translateX(-3px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.reader-issue-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.reader-issue-number {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  line-height: 1.2;
+}
+
+.reader-issue-theme {
+  font-size: 0.8rem;
+  color: var(--text-cream);
+  letter-spacing: 0.5px;
+}
+
+/* Quick Issue Switcher Pills in Reader Header */
+.reader-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(18, 6, 4, 0.7);
+  padding: 4px 6px;
+  border-radius: 25px;
+  border: 1px solid rgba(200, 120, 90, 0.2);
+}
+
+.switch-pill {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.switch-pill:hover {
+  color: var(--text-ivory);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.switch-pill.active {
+  background: var(--accent-terracotta);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.reader-right {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.reader-action-btn {
+  background: rgba(45, 16, 10, 0.65);
+  border: 1px solid rgba(200, 130, 100, 0.25);
+  color: var(--text-cream);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+}
+
+.reader-action-btn:hover {
+  background: rgba(140, 50, 30, 0.85);
+  color: #fff;
+  border-color: var(--accent-gold);
+  transform: scale(1.08);
+}
+
+.reader-action-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* Reader Main Body Container */
+.reader-body {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+/* Iframe Flipbook Wrapper (for Heyzine / FlipHTML5) */
+.iframe-reader-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+.iframe-reader-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Native Flipbook Wrapper (For Sayı 5 & Özel Sayı) */
+.native-flipbook-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 0.5rem 0 1rem;
+}
+
+.flipbook-stage {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0; /* Prevents overflow pushing toolbar out */
+}
+
+#flipbook-book {
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.85);
+  border-radius: 6px;
+  max-width: 95vw;
+}
+
+.book-page {
+  background-color: #fff;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-page img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Native Reader Bottom Toolbar */
+.native-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: rgba(30, 10, 6, 0.95);
+  border: 1px solid rgba(220, 140, 100, 0.35);
+  padding: 0.55rem 1.75rem;
+  border-radius: 30px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  z-index: 50;
+  flex-shrink: 0;
+}
+
+.toolbar-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-cream);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: var(--transition-smooth);
+}
+
+.toolbar-btn:hover {
+  background: rgba(140, 50, 30, 0.8);
+  color: #fff;
+}
+
+.toolbar-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.page-counter {
+  font-size: 0.85rem;
+  color: var(--accent-gold);
+  font-weight: 600;
+  min-width: 90px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   ÖZEL SAYI - CURATED EDITORIAL STYLING
+   ========================================================================== */
+.special-page {
+  width: 100%;
+  height: 100%;
+  padding: 2.5rem 2rem;
+  background: #fbf7ee;
+  color: #2b1810;
+  font-family: var(--font-serif);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border: 1px solid #ebdcc5;
+}
+
+.special-page.cover {
+  background: radial-gradient(circle at center, #8b3c29 0%, #4a1c12 100%);
+  color: #fff;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+}
+
+.special-cover-badge {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 6px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem;
+}
+
+.special-cover-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.special-cover-subtitle {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.special-cover-title {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+}
+
+.special-cover-theme {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #f7e4ce;
+  max-width: 380px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.75rem 0;
+}
+
+/* Interior Editorial Pages */
+.special-header-decor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d2bfa6;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #8b523f;
+}
+
+.special-headline {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  color: #4a1c12;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.special-lead {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: #723e2d;
+  margin-bottom: 1.25rem;
+  border-left: 3px solid var(--accent-gold);
+  padding-left: 1rem;
+}
+
+.special-body-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #3b241c;
+}
+
+.special-quote {
+  background: #f1e6d4;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #5d2516;
+  text-align: center;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+}
+
+.special-footer-decor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #d2bfa6;
+  padding-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #8b523f;
+}
+
+/* ==========================================================================
+   BOTTOM BAR & FOOTER
+   ========================================================================== */
+.footer-bar {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1400px;
+  padding: 1rem 2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.footer-credits {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.footer-link {
+  color: var(--text-cream);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--accent-gold);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS (Mobile & Tablet Optimization)
+   ========================================================================== */
+
+/* Tablets & Small Laptops (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .folder-dossier {
+    width: min(500px, 88vw);
+  }
+  .front-cover-showcase {
+    top: 51.5%;
+    left: 13%;
+    right: 4.5%;
+    gap: 1.1rem;
+  }
+  .magazine-preview-card {
+    height: 92%;
+    max-height: 265px;
+  }
+  .prompt-title-group {
+    font-size: 1.45rem;
+  }
+  .reader-header {
+    padding: 0.75rem 1.25rem;
+  }
+  .reader-switcher {
+    gap: 0.25rem;
+    padding: 3px 4px;
+  }
+  .switch-pill {
+    padding: 3px 8px;
+    font-size: 0.74rem;
+  }
+}
+
+/* Medium Tablets & Large Phones (max-width: 768px) */
+@media (max-width: 768px) {
+  .top-bar {
+    padding: 0.75rem 1.25rem;
+  }
+  .brand-logo-wrap {
+    width: 40px;
+    height: 40px;
+  }
+  .brand-title {
+    font-size: 1.15rem;
+  }
+  .brand-institution {
+    font-size: 0.62rem;
+  }
+  .hide-mobile {
+    display: none !important;
+  }
+  .btn-ambient, .btn-social {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.76rem;
+  }
+  .folder-dossier {
+    width: min(440px, 92vw);
+  }
+  .front-cover-showcase {
+    gap: 0.95rem;
+    top: 52%;
+    left: 12%;
+    right: 4%;
+  }
+  .magazine-preview-card {
+    height: 90%;
+    max-height: 235px;
+  }
+  .prompt-title-group {
+    font-size: 1.25rem;
+  }
+  .prompt-theme-sub {
+    font-size: 0.74rem;
+  }
+  .folder-tooltip {
+    display: none; /* Tooltip not needed on touch screens */
+  }
+  .reader-header {
+    padding: 0.65rem 0.9rem;
+    gap: 0.6rem;
+  }
+  .reader-switcher {
+    max-width: 220px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .reader-switcher::-webkit-scrollbar {
+    display: none;
+  }
+  .footer-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 0.85rem 1rem 1.25rem;
+    font-size: 0.72rem;
+  }
+  .footer-credits, .footer-links {
+    justify-content: center;
+  }
+}
+
+/* Phones & Small Screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .top-bar {
+    padding: 0.5rem 0.85rem;
+  }
+  .brand-group {
+    gap: 0.65rem;
+  }
+  .brand-logo-wrap {
+    width: 36px;
+    height: 36px;
+  }
+  .brand-title {
+    font-size: 1.05rem;
+  }
+  .brand-institution {
+    font-size: 0.58rem;
+    letter-spacing: 1.2px;
+  }
+  .btn-ambient, .btn-social {
+    padding: 0.45rem 0.55rem;
+  }
+  .folder-dossier {
+    width: 94vw;
+    max-width: 360px;
+  }
+  .front-cover-showcase {
+    gap: 0.65rem;
+    top: 52.5%;
+    left: 11%;
+    right: 3%;
+  }
+  .magazine-preview-card {
+    height: 88%;
+    max-height: 195px;
+  }
+  .prompt-badge {
+    font-size: 0.62rem;
+    padding: 2px 6px;
+    margin-bottom: 0.2rem;
+  }
+  .prompt-title-group {
+    font-size: 0.98rem;
+    line-height: 1.18;
+  }
+  .prompt-theme-sub {
+    font-size: 0.68rem;
+    margin-top: 0.2rem;
+  }
+  .prompt-hint-pill {
+    padding: 3px 8px;
+    font-size: 0.65rem;
+    margin-top: 0.35rem;
+  }
+  .scene-emblem-wrap {
+    margin-top: 0.35rem;
+    margin-bottom: 0.25rem;
+  }
+  .scene-emblem {
+    width: 48px;
+    height: 48px;
+  }
+  .scene-signature {
+    font-size: 0.64rem;
+  }
+  .reader-header {
+    padding: 0.45rem 0.65rem;
+    gap: 0.35rem;
+  }
+  .reader-left {
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+  .btn-back {
+    padding: 0.4rem 0.6rem;
+  }
+  .btn-back span {
+    display: none;
+  }
+  .reader-issue-info {
+    min-width: 0;
+  }
+  .reader-issue-number {
+    font-size: 0.95rem;
+  }
+  .reader-issue-theme {
+    display: none; /* Hide long theme title on small phones to give full room to switcher */
+  }
+  .reader-switcher {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 2px 4px;
+    gap: 0.25rem;
+  }
+  .reader-switcher::-webkit-scrollbar {
+    display: none;
+  }
+  .switch-pill {
+    flex-shrink: 0;
+    padding: 3.5px 8px;
+    font-size: 0.72rem;
+    border-radius: 14px;
+  }
+  .reader-actions {
+    gap: 0.25rem;
+    flex-shrink: 0;
+  }
+  .reader-action-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .native-toolbar {
+    padding: 0.38rem 0.9rem;
+    gap: 0.65rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  .toolbar-btn {
+    font-size: 0.76rem;
+    padding: 4px 8px;
+    gap: 0.25rem;
+  }
+  .page-counter {
+    font-size: 0.78rem;
+    min-width: 75px;
+  }
+}
